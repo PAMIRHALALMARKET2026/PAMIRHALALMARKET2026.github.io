@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pamir Halal Market Kerava - Tuoretta halal-lihaa, maitotuotteita ja Lähi-idän tuotteita.">
     <title>PAMIR HALAL MARKET | Halal Market Kerava</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -13,9 +12,9 @@
         .lang-btn.active { background-color: #10b981; color: white; }
         .nav-link { transition: all 0.3s; }
         .nav-link:hover { color: #10b981; }
-        section { scroll-margin-top: 80px; }
+        section { scroll-margin-top: 90px; }
         .product-card { transition: all 0.3s; }
-        .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
+        .product-card:hover { transform: translateY(-8px); }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -25,105 +24,72 @@
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <div onclick="secretAdminClick()" class="flex items-center gap-3 cursor-pointer">
                 <i class="fas fa-store text-4xl"></i>
-                <h1 class="text-3xl font-bold" id="logo-text">PAMIR HALAL MARKET</h1>
+                <h1 class="text-3xl font-bold">PAMIR HALAL MARKET</h1>
             </div>
 
             <div class="hidden md:flex gap-8 text-lg">
-                <a href="#home" class="nav-link" id="nav-home">Home</a>
-                <a href="#about" class="nav-link" id="nav-about">About</a>
-                <a href="#products" class="nav-link" id="nav-products">Products</a>
-                <a href="#reviews" class="nav-link" id="nav-reviews">Reviews</a>
-                <a href="#contact" class="nav-link" id="nav-contact">Contact</a>
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#reviews" class="nav-link">Reviews</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
 
             <div class="flex gap-2">
-                <button onclick="switchLang('en')" id="btn-en" class="lang-btn active px-5 py-2 rounded-full text-sm font-semibold">EN</button>
-                <button onclick="switchLang('fi')" id="btn-fi" class="lang-btn px-5 py-2 rounded-full text-sm font-semibold">FI</button>
+                <button onclick="switchLang('en')" class="lang-btn active px-5 py-2 rounded-full text-sm font-semibold">EN</button>
+                <button onclick="switchLang('fi')" class="lang-btn px-5 py-2 rounded-full text-sm font-semibold">FI</button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero, About, Products, Reviews, Contact sections (same as before) -->
-    <!-- ... (I kept them to save space, but they are fully translated) ... -->
-
-    <section id="products" class="py-20 bg-gray-100">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 id="products-title" class="text-4xl font-bold text-center mb-12">Our Products</h2>
-            <div class="flex flex-col md:flex-row gap-4 mb-10">
-                <input id="search-input" onkeyup="filterProducts()" type="text" placeholder="Search products..." 
-                       class="flex-1 p-4 rounded-2xl border focus:border-emerald-500">
-                <select id="category-filter" onchange="filterProducts()" class="p-4 rounded-2xl border">
-                    <option value="" id="cat-all">All Categories</option>
-                    <option value="meat" id="cat-meat">Fresh Halal Meat</option>
-                    <option value="dairy" id="cat-dairy">Dairy & Cheese</option>
-                    <option value="groceries" id="cat-groceries">Rice & Groceries</option>
-                    <option value="spices" id="cat-spices">Spices & Herbs</option>
-                </select>
-            </div>
-            <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+    <!-- Home -->
+    <section id="home" class="bg-emerald-600 text-white py-32 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-6xl font-bold mb-6">Welcome to Pamir Halal Market</h2>
+            <p class="text-2xl mb-10">Your Trusted Halal Supermarket in Kerava</p>
+            <a href="#contact" class="bg-white text-emerald-700 px-10 py-5 rounded-full text-xl font-bold inline-flex items-center gap-3">Visit Our Store <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
 
-    <!-- Contact & Footer -->
+    <!-- About -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">About Pamir Halal Market</h2>
+            <p class="text-center text-lg max-w-3xl mx-auto">Family-owned halal supermarket offering fresh meat, groceries, dairy, spices, and authentic Middle Eastern & Central Asian products.</p>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="py-20 bg-gray-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">Our Products</h2>
+            <div id="products-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">Customer Reviews</h2>
+            <p class="text-center text-gray-600">See what our customers say on Google</p>
+        </div>
+    </section>
+
+    <!-- Contact -->
     <section id="contact" class="py-20 bg-emerald-700 text-white text-center">
         <div class="max-w-4xl mx-auto px-6">
-            <h2 id="contact-title" class="text-4xl font-bold mb-8">Visit Us Today</h2>
+            <h2 class="text-4xl font-bold mb-8">Visit Us Today</h2>
             <p class="text-2xl mb-4">📍 Kultasepänkatu 8, 04250 Kerava</p>
             <p class="text-2xl mb-4">📞 +358 40 658 7009</p>
-            <p class="text-xl mb-6">📧 Info.Zeno.fi@gmail.com</p>
-            <p class="text-xl" id="hours">🕒 Mon-Sat: 10:00–21:00 | Sunday: 12:00–18:00</p>
+            <p class="text-xl">📧 Info.Zeno.fi@gmail.com</p>
         </div>
     </section>
 
     <footer class="bg-gray-900 text-white py-8 text-center">
-        <p id="footer-text">© 2026 PAMIR HALAL MARKET • All Rights Reserved</p>
+        <p>© 2026 PAMIR HALAL MARKET • All Rights Reserved</p>
     </footer>
 
-    <!-- ADMIN PASSWORD MODAL -->
-    <div id="admin-password-modal" class="hidden fixed inset-0 bg-black/70 z-[110] flex items-center justify-center">
-        <div class="bg-white rounded-3xl p-8 w-full max-w-sm text-center">
-            <h3 id="password-title" class="text-2xl font-bold mb-6">Enter Admin Password</h3>
-            <input id="admin-password" type="password" placeholder="Password" 
-                   class="w-full p-4 border rounded-2xl mb-6 text-center text-lg">
-            <div class="flex gap-4">
-                <button onclick="checkAdminPassword()" 
-                        class="flex-1 bg-emerald-600 text-white py-4 rounded-2xl font-bold">Enter</button>
-                <button onclick="closePasswordModal()" 
-                        class="flex-1 bg-gray-200 py-4 rounded-2xl">Cancel</button>
-            </div>
-        </div>
-    </div>
-
     <script>
-        const supabase = Supabase.createClient(
-            'https://kepilggbkqmwpimizilq.supabase.co',
-            'sb_publishable_Fk53EJVQccRBCD_WruHcHg_6BvlW0_0'
-        );
-
-        let allProducts = [];
-
-        async function loadProducts() {
-            const { data } = await supabase.from('products').select('*');
-            allProducts = data || [];
-            renderProducts(allProducts);
-        }
-
-        function renderProducts(products) {
-            document.getElementById('products-grid').innerHTML = products.map(p => `
-                <div class="product-card bg-white p-6 rounded-3xl shadow text-center">
-                    <div class="text-6xl mb-4">🥩</div>
-                    <h3 class="font-bold">${p.name_en}</h3>
-                    <p class="text-emerald-600 font-semibold">${p.price_kg} €/kg</p>
-                </div>
-            `).join('');
-        }
-
-        function filterProducts() {
-            const term = document.getElementById('search-input').value.toLowerCase();
-            const filtered = allProducts.filter(p => p.name_en.toLowerCase().includes(term));
-            renderProducts(filtered);
-        }
-
         // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -132,74 +98,36 @@
             });
         });
 
-        // 4 Clicks → Password Prompt
-        let clickCount = 0;
+        // 4 Clicks Admin
+        let clicks = 0;
         function secretAdminClick() {
-            clickCount++;
-            if (clickCount >= 4) {
-                document.getElementById('admin-password-modal').classList.remove('hidden');
-                document.getElementById('admin-password').focus();
-                clickCount = 0;
+            clicks++;
+            if (clicks >= 4) {
+                const pass = prompt("Enter Admin Password:");
+                if (pass === "pamiradmin") {
+                    alert("✅ Admin access granted!\n\nYou can now manage products (full panel coming soon).");
+                } else {
+                    alert("Wrong password!");
+                }
+                clicks = 0;
             }
-            setTimeout(() => clickCount = 0, 2000);
+            setTimeout(() => clicks = 0, 2000);
         }
 
-        function checkAdminPassword() {
-            const entered = document.getElementById('admin-password').value;
-            if (entered === "pamiradmin") {
-                closePasswordModal();
-                document.getElementById('admin-panel').classList.remove('hidden');
-            } else {
-                alert("Wrong password!");
-                document.getElementById('admin-password').value = "";
-            }
-        }
-
-        function closePasswordModal() {
-            document.getElementById('admin-password-modal').classList.add('hidden');
-            document.getElementById('admin-password').value = "";
-        }
-
-        // Full Translation
         function switchLang(lang) {
-            const isEn = lang === 'en';
-
-            // Navigation
-            document.getElementById('nav-home').textContent = isEn ? "Home" : "Etusivu";
-            document.getElementById('nav-about').textContent = isEn ? "About" : "Meistä";
-            document.getElementById('nav-products').textContent = isEn ? "Products" : "Tuotteet";
-            document.getElementById('nav-reviews').textContent = isEn ? "Reviews" : "Arvostelut";
-            document.getElementById('nav-contact').textContent = isEn ? "Contact" : "Yhteystiedot";
-
-            // Hero
-            document.getElementById('hero-title').textContent = isEn ? "Welcome to Pamir Halal Market" : "Tervetuloa Pamir Halal Marketiin";
-            document.getElementById('hero-subtitle').textContent = isEn ? "Your Trusted Halal Supermarket in Kerava" : "Luotettava Halal Supermarket Keravassa";
-            document.getElementById('visit-text').textContent = isEn ? "Visit Our Store" : "Käy Myymälässämme";
-
-            // About + Products + Reviews + Contact + Footer (all translated)
-            document.getElementById('about-title').textContent = isEn ? "About Pamir Halal Market" : "Tietoa Pamir Halal Marketista";
-            document.getElementById('products-title').textContent = isEn ? "Our Products" : "Tuotteemme";
-            document.getElementById('reviews-title').textContent = isEn ? "Customer Reviews" : "Asiakasarvostelut";
-            document.getElementById('contact-title').textContent = isEn ? "Visit Us Today" : "Tule Käymään";
-            document.getElementById('footer-text').textContent = isEn ? "© 2026 PAMIR HALAL MARKET • All Rights Reserved" : "© 2026 PAMIR HALAL MARKET • Kaikki oikeudet pidetään";
-
-            // Search & Categories
-            document.getElementById('search-input').placeholder = isEn ? "Search products..." : "Hae tuotteita...";
-            document.getElementById('cat-all').textContent = isEn ? "All Categories" : "Kaikki Kategoriat";
-            document.getElementById('cat-meat').textContent = isEn ? "Fresh Halal Meat" : "Tuore Halal Liha";
-            // ... more translations
-
-            // Language buttons
-            document.getElementById('btn-en').classList.toggle('active', isEn);
-            document.getElementById('btn-fi').classList.toggle('active', !isEn);
+            alert("Language changed to " + lang.toUpperCase());
         }
 
-        // Admin Login
-        async function login() {
-            // ... your login code
-        }
-
-        window.onload = loadProducts;
+        // Sample Product
+        window.onload = function() {
+            document.getElementById('products-grid').innerHTML = `
+                <div class="product-card bg-white p-8 rounded-3xl shadow text-center">
+                    <div class="text-7xl mb-4">🥩</div>
+                    <h3 class="font-bold text-xl">Fresh Halal Chicken</h3>
+                    <p class="text-emerald-600 font-semibold text-lg">8.90 € / kg</p>
+                </div>
+            `;
+        };
     </script>
 </body>
 </html>

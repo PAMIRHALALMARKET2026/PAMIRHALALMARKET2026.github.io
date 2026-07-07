@@ -3,35 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAMIR HALAL MARKET</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Pamir Halal Market Kerava - Tuoretta halal-lihaa, maitotuotteita ja Lähi-idän tuotteita.">
+    <meta name="keywords" content="halal market kerava, halal liha kerava, pamir halal">
+    <title>PAMIR HALAL MARKET | Halal Market Kerava</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .lang-btn.active { background-color: #10b981; color: white; }
+        .nav-link { transition: all 0.3s; }
+        .nav-link:hover { color: #10b981; }
+        section { scroll-margin-top: 80px; }
+    </style>
 </head>
 <body class="bg-gray-50">
 
-    <div class="max-w-6xl mx-auto px-6 py-8">
-        <h1 class="text-4xl font-bold text-center mb-10">PAMIR HALAL MARKET</h1>
-
-        <!-- Admin Login -->
-        <div class="mb-12 text-center">
-            <input type="password" id="admin-pass" placeholder="Admin Password" class="border p-4 rounded w-64">
-            <button onclick="loginAdmin()" class="bg-emerald-600 text-white px-8 py-4 rounded ml-4">Login Admin</button>
+    <!-- Navbar -->
+    <nav class="bg-emerald-700 text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-store text-4xl"></i>
+                <div>
+                    <h1 class="text-3xl font-bold">PAMIR HALAL MARKET</h1>
+                </div>
+            </div>
+            <div class="hidden md:flex gap-8 text-lg">
+                <a href="#home" class="nav-link" id="nav-home">Home</a>
+                <a href="#about" class="nav-link" id="nav-about">About</a>
+                <a href="#products" class="nav-link" id="nav-products">Products</a>
+                <a href="#reviews" class="nav-link" id="nav-reviews">Reviews</a>
+                <a href="#contact" class="nav-link" id="nav-contact">Contact</a>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="switchLang('en')" id="btn-en" class="lang-btn active px-5 py-2 rounded-full text-sm font-semibold">EN</button>
+                <button onclick="switchLang('fi')" id="btn-fi" class="lang-btn px-5 py-2 rounded-full text-sm font-semibold">FI</button>
+            </div>
         </div>
+    </nav>
 
-        <!-- Admin Panel -->
-        <div id="admin-panel" class="hidden mb-12 p-8 border rounded-3xl bg-white">
-            <h2 class="text-2xl font-bold mb-4">Add New Product</h2>
+    <!-- Hero -->
+    <section id="home" class="bg-emerald-600 text-white py-32 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 id="hero-title" class="text-6xl font-bold mb-6">Welcome to Pamir Halal Market</h2>
+            <p id="hero-subtitle" class="text-2xl mb-10">Your Trusted Halal Supermarket in Kerava</p>
+            <a href="#contact" class="bg-white text-emerald-700 px-10 py-5 rounded-full text-xl font-bold inline-flex items-center gap-3 hover:scale-105 transition">
+                <span id="visit-text">Visit Our Store</span> <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 id="about-title" class="text-4xl font-bold text-center mb-12">About Pamir Halal Market</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-lg text-gray-700">
+                    <p id="about-text-en">Family-owned halal supermarket offering fresh meat, groceries, dairy, spices, and authentic Middle Eastern & Central Asian products.</p>
+                    <p id="about-text-fi" class="hidden">Perheyritys, joka tarjoaa tuoretta halal-lihaa, ruoka-aineita, maitotuotteita, mausteita ja aitoja Lähi-idän sekä Keski-Aasian tuotteita.</p>
+                </div>
+                <div class="bg-emerald-50 p-10 rounded-3xl text-lg">
+                    <ul class="space-y-4">
+                        <li><i class="fas fa-check text-emerald-600 mr-4"></i><span id="cert1">100% Halal Certified</span></li>
+                        <li><i class="fas fa-check text-emerald-600 mr-4"></i><span id="cert2">Fresh Daily Arrivals</span></li>
+                        <li><i class="fas fa-check text-emerald-600 mr-4"></i><span id="cert3">Friendly & Helpful Staff</span></li>
+                        <li><i class="fas fa-check text-emerald-600 mr-4"></i><span id="cert4">Wide International Selection</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="py-20 bg-gray-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 id="products-title" class="text-4xl font-bold text-center mb-12">Our Products</h2>
+            <input type="text" id="search" placeholder="Search products..." class="w-full max-w-md mx-auto block border p-4 rounded-full mb-10">
+            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+        </div>
+    </section>
+
+    <!-- Google Reviews -->
+    <section id="reviews" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">Customer Reviews</h2>
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div class="elfsight-app-103f9793-aa49-4d7b-bed2-99c97c0e0a22" data-elfsight-app-lazy></div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-emerald-700 text-white text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 id="contact-title" class="text-4xl font-bold mb-8">Visit Us Today</h2>
+            <p class="text-2xl mb-4">📍 Kultasepänkatu 8, 04250 Kerava</p>
+            <p class="text-2xl mb-4">📞 +358 40 658 7009</p>
+            <p class="text-xl mb-6">📧 Info.Zeno.fi@gmail.com</p>
+            <p class="text-xl" id="hours">🕒 Mon-Sat: 10:00–21:00 | Sunday: 12:00–18:00</p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8 text-center">
+        <p>© 2026 PAMIR HALAL MARKET • All Rights Reserved</p>
+    </footer>
+
+    <!-- ADMIN PANEL -->
+    <div id="admin-panel" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-6">Admin Panel</h2>
             <input id="prod-name" placeholder="Product Name" class="border p-3 w-full mb-2">
             <input id="prod-price-kg" placeholder="Price per kg (€)" type="number" step="0.01" class="border p-3 w-full mb-2">
-            <input id="prod-price-gram" placeholder="Price per gram (€)" type="number" step="0.0001" class="border p-3 w-full mb-2">
-            <button onclick="addProduct()" class="bg-green-600 text-white px-8 py-4 rounded">Add Product</button>
+            <input id="prod-price-gram" placeholder="Price per gram (€)" type="number" step="0.0001" class="border p-3 w-full mb-4">
+            <button onclick="addProduct()" class="bg-green-600 text-white px-8 py-4 w-full rounded">Add Product</button>
+            <button onclick="document.getElementById('admin-panel').classList.add('hidden')" class="mt-4 text-gray-500">Close</button>
         </div>
-
-        <!-- Search -->
-        <input type="text" id="search" placeholder="Search products..." class="w-full border p-4 rounded mb-8">
-
-        <!-- Products -->
-        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
     </div>
 
     <script>
@@ -68,15 +152,15 @@
             if (name && priceKg) {
                 await supabase.from('products').insert({ name, price_kg: priceKg, price_gram: priceGram });
                 loadProducts();
-                alert("Product added successfully!");
+                alert("Product added!");
             }
         }
 
-        function loginAdmin() {
-            if (document.getElementById('admin-pass').value === "admin123") {
+        // Admin access with #admin in URL
+        if (window.location.hash === '#admin') {
+            const pass = prompt("Enter Admin Password");
+            if (pass === "admin123") {
                 document.getElementById('admin-panel').classList.remove('hidden');
-            } else {
-                alert("Wrong password");
             }
         }
 

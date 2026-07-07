@@ -87,4 +87,82 @@
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12">Customer Reviews</h2>
             <script src="https://elfsightcdn.com/platform.js" async></script>
-            <div class="elfsight-app-103f9793-aa49-4d7b-bed2-99c97c
+            <div class="elfsight-app-103f9793-aa49-4d7b-bed2-99c97c0e0a22" data-elfsight-app-lazy></div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-emerald-700 text-white text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 id="contact-title" class="text-4xl font-bold mb-8">Visit Us Today</h2>
+            <p class="text-2xl mb-4">📍 Kultasepänkatu 8, 04250 Kerava</p>
+            <p class="text-2xl mb-4">📞 +358 40 658 7009</p>
+            <p class="text-xl mb-6">📧 Info.Zeno.fi@gmail.com</p>
+            <p class="text-xl" id="hours">🕒 Mon-Sat: 10:00–21:00 | Sunday: 12:00–18:00</p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8 text-center">
+        <p>© 2026 PAMIR HALAL MARKET • All Rights Reserved</p>
+    </footer>
+
+    <!-- ADMIN PANEL (Access with #admin) -->
+    <div id="admin-panel" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-3xl w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-6">Admin Panel</h2>
+            <input id="prod-name" placeholder="Product Name" class="border p-3 w-full mb-2">
+            <input id="prod-price-kg" placeholder="Price per kg (€)" type="number" step="0.01" class="border p-3 w-full mb-2">
+            <input id="prod-price-gram" placeholder="Price per gram (€)" type="number" step="0.0001" class="border p-3 w-full mb-4">
+            <button onclick="addProduct()" class="bg-green-600 text-white px-8 py-4 w-full rounded">Add Product</button>
+            <button onclick="document.getElementById('admin-panel').classList.add('hidden')" class="mt-4 text-gray-500 w-full">Close</button>
+        </div>
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://kepilggbkqmwpimizilq.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlcGlsZ2dia3Ftd3BpbWl6aWxxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM0MzgxMzcsImV4cCI6MjA5OTAxNDEzN30.wSjewR-bboD8lVXzm0GhziNNowcynJF0_syH0l6L590';
+
+        const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        async function loadProducts(search = '') {
+            let q = supabase.from('products').select('*');
+            if (search) q = q.ilike('name', `%${search}%`);
+            const { data } = await q;
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            data.forEach(p => {
+                const div = document.createElement('div');
+                div.className = "bg-white p-6 rounded-3xl shadow hover:shadow-xl";
+                div.innerHTML = `
+                    <h3 class="text-xl font-bold">${p.name}</h3>
+                    <p class="text-emerald-600 text-2xl">${p.price_kg} € / kg</p>
+                    <p class="text-gray-500">${p.price_gram} € / gram</p>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        async function addProduct() {
+            const name = document.getElementById('prod-name').value;
+            const kg = parseFloat(document.getElementById('prod-price-kg').value);
+            const gram = parseFloat(document.getElementById('prod-price-gram').value);
+            if (name && kg) {
+                await supabase.from('products').insert({ name, price_kg: kg, price_gram: gram });
+                loadProducts();
+                alert("Product added successfully!");
+            }
+        }
+
+        // Admin with #admin
+        if (window.location.hash === '#admin') {
+            const pass = prompt("Enter Admin Password:");
+            if (pass === "admin123") {
+                document.getElementById('admin-panel').classList.remove('hidden');
+            }
+        }
+
+        document.getElementById('search').addEventListener('input', (e) => loadProducts(e.target.value));
+        loadProducts();
+    </script>
+</body>
+</html>

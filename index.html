@@ -14,6 +14,12 @@
         .nav-link { transition: all 0.3s; }
         .nav-link:hover { color: #10b981; }
         section { scroll-margin-top: 80px; }
+
+        /* Hide Elfsight Branding */
+        .elfsight-app-103f9793-aa49-4d7b-bed2-99c97c0e0a22 .e-app__branding,
+        .elfsight-app-103f9793-aa49-4d7b-bed2-99c97c0e0a22 .e-widget__branding {
+            display: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -90,9 +96,9 @@
     <section id="reviews" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12">Customer Reviews</h2>
-            <p class="text-center text-gray-600 mb-10">Real reviews from Google</p>
+            <p class="text-center text-gray-600 mb-10">See what our customers say on Google</p>
             
-            <!-- Your Elfsight Widget -->
+            <!-- Elfsight Google Reviews Widget -->
             <script src="https://elfsightcdn.com/platform.js" async></script>
             <div class="elfsight-app-103f9793-aa49-4d7b-bed2-99c97c0e0a22" data-elfsight-app-lazy></div>
         </div>
